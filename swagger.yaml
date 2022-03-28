@@ -1,0 +1,706 @@
+---
+swagger: "2.0"
+info:
+  description: |
+    This is the api guide for the Libary Checkout application
+    Authored by: Scott Willis, Subash Kharel, Preston Kelly
+  version: 1.0.0
+  title: Libarary Checkout API
+  contact:
+    email: scott.willis.wsu@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+host: virtserver.swaggerhub.com
+basePath: /UW-Scott/Template/1.0.0
+tags:
+- name: Librarian
+  description: All operations for librarian data
+- name: Book
+  description: All operations for book data
+- name: Student
+  description: All operations for student data
+- name: University
+  description: All operations for university data
+schemes:
+- https
+- http
+paths:
+  /librarian:
+    get:
+      tags:
+      - Librarian
+      summary: Returns all librarians in application
+      operationId: getAllLibrarian
+      consumes:
+      - application/json
+      - application/xml
+      produces:
+      - application/json
+      - application/xml
+      parameters: []
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Librarian'
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+    post:
+      tags:
+      - Librarian
+      summary: Add a new librarian to the application
+      operationId: addLibrarian
+      consumes:
+      - application/json
+      - application/xml
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: Librarian object to be added
+        required: true
+        schema:
+          $ref: '#/definitions/Librarian'
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Librarian'
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "405":
+          description: Invalid input
+    put:
+      tags:
+      - Librarian
+      summary: Updates a librarian in the application
+      operationId: updateLibrarian
+      consumes:
+      - application/json
+      - application/xml
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: Librarian object to be updated
+        required: true
+        schema:
+          $ref: '#/definitions/Librarian'
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Librarian'
+        "400":
+          description: Invalid id/ id not found
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "405":
+          description: Invalid input
+  /librarian/{librarianId}:
+    get:
+      tags:
+      - Librarian
+      summary: Get a librarian
+      operationId: getLibrarian
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: api_key
+        in: header
+        required: false
+        type: string
+      - name: librarianId
+        in: path
+        description: Librarian id to get
+        required: true
+        type: integer
+        format: int64
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Librarian'
+        "400":
+          description: Invalid ID supplied
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Librarian not found
+    delete:
+      tags:
+      - Librarian
+      summary: Deletes a librarian
+      operationId: deleteLibrarian
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: api_key
+        in: header
+        required: false
+        type: string
+      - name: librarianId
+        in: path
+        description: Librarian id to delete
+        required: true
+        type: integer
+        format: int64
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Invalid ID supplied
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Librarian not found
+  /student:
+    get:
+      tags:
+      - Student
+      summary: Returns all Students in application
+      operationId: getAllStudent
+      consumes:
+      - application/json
+      - application/xml
+      produces:
+      - application/json
+      - application/xml
+      parameters: []
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Student'
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+    post:
+      tags:
+      - Student
+      summary: Add a new student to the application
+      operationId: addStudent
+      consumes:
+      - application/json
+      - application/xml
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: Student object to be added
+        required: true
+        schema:
+          $ref: '#/definitions/Student'
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Student'
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "405":
+          description: Invalid input
+    put:
+      tags:
+      - Student
+      summary: Updates a student in the application
+      operationId: updateStudent
+      consumes:
+      - application/json
+      - application/xml
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: Student object to be updated
+        required: true
+        schema:
+          $ref: '#/definitions/Student'
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Student'
+        "400":
+          description: Invalid id/ id not found
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "405":
+          description: Invalid input
+  /student/{studentId}:
+    get:
+      tags:
+      - Student
+      summary: Get a student
+      operationId: getStudent
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: api_key
+        in: header
+        required: false
+        type: string
+      - name: studentId
+        in: path
+        description: Student id to get
+        required: true
+        type: integer
+        format: int64
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Student'
+        "400":
+          description: Invalid ID supplied
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Student not found
+    delete:
+      tags:
+      - Student
+      summary: Deletes a student
+      operationId: deleteStudent
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: api_key
+        in: header
+        required: false
+        type: string
+      - name: studentId
+        in: path
+        description: Student id to delete
+        required: true
+        type: integer
+        format: int64
+      responses:
+        "200":
+          description: successful operation
+        "400":
+          description: Invalid ID supplied
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Librarian not found
+  /book:
+    get:
+      tags:
+      - Book
+      summary: Returns all Books in application
+      operationId: getAllBook
+      consumes:
+      - application/json
+      - application/xml
+      produces:
+      - application/json
+      - application/xml
+      parameters: []
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Book'
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+    post:
+      tags:
+      - Book
+      summary: Add a new book to the application
+      operationId: addBook
+      consumes:
+      - application/json
+      - application/xml
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: Book object to be added
+        required: true
+        schema:
+          $ref: '#/definitions/Book'
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Book'
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "405":
+          description: Invalid input
+    put:
+      tags:
+      - Book
+      summary: Updates a book in the application
+      operationId: updateBook
+      consumes:
+      - application/json
+      - application/xml
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: Book object to be updated
+        required: true
+        schema:
+          $ref: '#/definitions/Book'
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Book'
+        "400":
+          description: Invalid id/ id not found
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "405":
+          description: Invalid input
+  /book/{bookId}:
+    get:
+      tags:
+      - Book
+      summary: Get a Book
+      operationId: getBook
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: api_key
+        in: header
+        required: false
+        type: string
+      - name: bookId
+        in: path
+        description: Book id to get
+        required: true
+        type: integer
+        format: int64
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Book'
+        "400":
+          description: Invalid ID supplied
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Book not found
+    delete:
+      tags:
+      - Book
+      summary: Deletes a Book
+      operationId: deleteBook
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: api_key
+        in: header
+        required: false
+        type: string
+      - name: bookId
+        in: path
+        description: Book id to delete
+        required: true
+        type: integer
+        format: int64
+      responses:
+        "200":
+          description: successful operation
+        "400":
+          description: Invalid ID supplied
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Book not found
+  /university:
+    get:
+      tags:
+      - University
+      summary: Returns all University in application
+      operationId: getAllUniversity
+      consumes:
+      - application/json
+      - application/xml
+      produces:
+      - application/json
+      - application/xml
+      parameters: []
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/University'
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+    post:
+      tags:
+      - University
+      summary: Add a new university to the application
+      operationId: addUniversity
+      consumes:
+      - application/json
+      - application/xml
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: University object to be added
+        required: true
+        schema:
+          $ref: '#/definitions/University'
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/University'
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "405":
+          description: Invalid input
+    put:
+      tags:
+      - University
+      summary: Updates a University in the application
+      operationId: updateUniversity
+      consumes:
+      - application/json
+      - application/xml
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: University object to be updated
+        required: true
+        schema:
+          $ref: '#/definitions/University'
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/University'
+        "400":
+          description: Invalid id/ id not found
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "405":
+          description: Invalid input
+  /university/{universityId}:
+    get:
+      tags:
+      - University
+      summary: Get a University
+      operationId: getUniversity
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: api_key
+        in: header
+        required: false
+        type: string
+      - name: universityId
+        in: path
+        description: University id to get
+        required: true
+        type: integer
+        format: int64
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/University'
+        "400":
+          description: Invalid ID supplied
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Book not found
+    delete:
+      tags:
+      - University
+      summary: Deletes a University
+      operationId: deleteUniversity
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: api_key
+        in: header
+        required: false
+        type: string
+      - name: universityId
+        in: path
+        description: University id to delete
+        required: true
+        type: integer
+        format: int64
+      responses:
+        "200":
+          description: successful operation
+        "400":
+          description: Invalid ID supplied
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Book not found
+definitions:
+  Librarian:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      employeeId:
+        type: integer
+        format: int64
+      name:
+        type: string
+      dob:
+        type: string
+        format: date-time
+      school:
+        type: string
+    xml:
+      name: Librarian
+  Book:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      author:
+        type: string
+      name:
+        type: string
+      dob:
+        type: string
+        format: date-time
+      school:
+        type: string
+      edition:
+        type: integer
+        format: int64
+    xml:
+      name: Book
+  Student:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      studentId:
+        type: integer
+        format: int64
+      name:
+        type: string
+      dob:
+        type: string
+        format: date-time
+      school:
+        $ref: '#/definitions/University'
+      books:
+        type: array
+        items:
+          $ref: '#/definitions/Book'
+    xml:
+      name: Student
+  University:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      universityId:
+        type: integer
+        format: int64
+      name:
+        type: string
+      city:
+        type: string
+      state:
+        type: string
+      founded:
+        type: string
+        format: date-time
+      public:
+        type: boolean
+      staff:
+        type: array
+        items:
+          $ref: '#/definitions/Librarian'
+    xml:
+      name: Student
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
